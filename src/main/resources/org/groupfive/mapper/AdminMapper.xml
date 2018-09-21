@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.groupfive.dao.AdminDao">
+	<resultMap type="Admin" id="AdminResult">
+		<result property="aid" column="aid"/>
+		<result property="aname" column="aname"/>
+		<result property="aaccount" column="aaccount"/>
+		<result property="apsw" column="apsw"/>
+		<result property="atel" column="atel"/>
+		<result property="aemail" column="aemail"/>
+		<result property="adate" column="adate"/>
+	</resultMap>
+	<sql id="allAdminFields">
+		aid,aname,aaccount,apsw,atel,aemail,adate
+	</sql>
+	<select id="login" resultMap="AdminResult">
+		select <include refid="allAdminFields"/> from admins where aaccount=#{aaccount} and apsw=#{apsw}
+	</select>
+</mapper>
